@@ -1,0 +1,13 @@
+task app {
+
+    ext.nameProject = "WebAPP"
+    ext.version = "0.2 - Paprika"
+
+    doLast {
+        println nameProject + ":" + version
+    }
+}
+
+task deploy << {
+    println "Deploy: " + app.nameProject + " (" + app.version + ")"
+}
