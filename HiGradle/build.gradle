@@ -1,0 +1,15 @@
+task welcome << {
+    println 'Welcome, to Gradle'
+}
+
+task greeting << {
+    println 'hi, from gradle'
+}
+
+task great {
+    println 'Gradle is great'
+}
+
+task othertask {
+    println 'excute, other task'
+}

@@ -1,0 +1,12 @@
+task infoAuthor {
+    ext {
+        names = "Alan M.E"
+        mail = "alanmarquez@outlook.com"
+        webpage = "amecodelabs.io"
+    }
+}
+
+task error << {
+    println "an error has occurred, please contact the developer " +
+        infoAuthor.names + " - <" + infoAuthor.mail + "> "
+}
