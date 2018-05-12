@@ -1,0 +1,17 @@
+description = 'trivial test Gradle'
+version = '0.5'
+
+task cp(type:Copy, description: 'Copies sources to the bin directory') {
+    from 'src/'
+    into 'bin/'
+}
+
+task compress(type:Zip, description: 'Compress to the bin directory') {
+    from 'bin/'
+    baseName 'binaries'
+}
+cp.finalizedBy compress
+
+task commandCLI(type:Exec, description: 'execute command by CLI') {
+    commandLine 'ls', '-l', '../'
+}
