@@ -1,0 +1,44 @@
+task firstTask << {
+    println "Firt Task"
+}
+
+task secondTask {
+    dependsOn 'firstTask'
+
+    ext.someinfo = "Some Information"
+
+    doFirst {
+        println "SecondTask, init"
+    }
+
+    doLast {
+        println "Second Task, " + someinfo
+    }
+}
+
+task thirdTask(dependsOn:secondTask) << {
+    println "Third Task"
+}
+
+import java.io.File;
+
+task independentTask {
+    ext.output = {
+        name, flag ->
+            if (flag == 1)
+                println "independent Task[1], " + name
+            else
+                println "independent Task, " + name
+    }
+
+    onlyIf {
+        File file = new File("info.json");
+        return file.exists()
+    }
+
+    doLast {
+        output("Alan", 1)
+    }
+}
+
+thirdTask.finalizedBy independentTask
